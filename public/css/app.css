@@ -46,6 +46,10 @@ h1,h2{
     color: var(--brand-color);
 }
 
+.dropdown-menu[data-bs-popper] {
+    left: unset;
+    right: 0;
+}
 
 #home_header{
     color: var(--light-color);
@@ -80,5 +84,10 @@ h1,h2{
 
 .login_header{
     color: var(--brand-color);
+}
+
+.img-thumbnail{
+    width: 200px;
+    height: 250px;
 }
 

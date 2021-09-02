@@ -20,7 +20,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('homepage');
+        $articles = Article::all();
+
+        return view('homepage', ['allArticles' => $articles]);
     }
 
     public function getMyArticlesPage() {
@@ -64,7 +66,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('article.show', ['article' => $article]);
     }
 
     /**
