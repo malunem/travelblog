@@ -15,3 +15,9 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', [ArticleController::class, 'index'])->name('homepage');
+
+Route::get('/nuovo-articolo', [ArticleController::class, 'create'])->name('newArticle');
+
+Route::post('/my-articles', [ArticleController::class, 'store'])->name('saveArticle');
+
+Route::get('/my-articles', [ArticleController::class, 'getMyArticlesPage'])->name('myArticles');

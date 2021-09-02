@@ -1,6 +1,11 @@
 :root{
     --brand-color: #304f71;
     --brand-font: 'Indie Flower', cursive;
+    --light-color: whitesmoke;
+}
+
+body{
+    background-color: var(--light-color);
 }
 
 a{
@@ -31,7 +36,7 @@ h1,h2{
 
 
 #home_header{
-    color: whitesmoke;
+    color: var(--light-color);
     font-family: var(--brand-font);
     font-weight: bolder;
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0)), url('https://images.lonelyplanetitalia.it/uploads/pirano2?q=80&s=a25cb9e16f5486b582241eb16ac1691a');
@@ -46,14 +51,18 @@ h1,h2{
     max-width: 500px;
 }
 
+#article-form .form-control{
+    max-width: 1000px;
+}
+
 .btn{
     background-color: var(--brand-color);
-    color: whitesmoke;
+    color: var(--light-color);
 }
 
 .btn:hover{
     background-color: var(--brand-color);
-    color: whitesmoke;
+    color: var(--light-color);
     border: 2px solid var(--brand-color);
 }
 

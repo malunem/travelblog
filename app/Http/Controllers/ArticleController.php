@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -22,6 +23,10 @@ class ArticleController extends Controller
         return view('homepage');
     }
 
+    public function getMyArticlesPage() {
+        return view('my-articles');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +34,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('article.create');
     }
 
     /**
@@ -40,7 +45,15 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = Article::create([
+            'title'=>$request->title,
+            'body'=>$request->text,
+            'author'=>$request->author,
+            'img'=>$request->file('img')->store('public/articles')
+        ]);
+
+        return redirect(route('myArticles'))->with('message', "Complimenti " . Auth::user()->name . ", hai pubblicato un nuovo articolo!");
+
     }
 
     /**
