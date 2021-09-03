@@ -11,6 +11,12 @@
                         <img class="img-fluid" src="{{Storage::url($article->img)}}" alt="">
 
                         <p>{{$article->body}}</p>
+
+                        @auth
+                            <a href="{{route('editArticle', ['article'=>$article])}}">
+                                <button class="my-5 btn btn-block">Modifica articolo</button>
+                            </a>
+                        @endauth
                 </div>
             </div>
         </div>

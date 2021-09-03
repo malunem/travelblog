@@ -51,7 +51,7 @@ class ArticleController extends Controller
             'title'=>$request->title,
             'body'=>$request->text,
             'author'=>$request->author,
-            'img'=>$request->file('img')->store('public/articles')
+            'img'=>$request->file('img')->store('public/articles/')
         ]);
 
         return redirect(route('myArticles'))->with('message', "Complimenti " . Auth::user()->name . ", hai pubblicato un nuovo articolo!");
@@ -77,7 +77,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('article.edit', ['article'=>$article]);
     }
 
     /**
@@ -88,8 +88,14 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $article)
-    {
-        //
+    {   
+        $article->title = $request->title;
+        $article->body = $request->body;
+        $article->img = $request->file('img')->store('public/articles/');
+        $article->author = $request->author;
+        $article->save();
+
+        return redirect(route('homepage'))->with('message', Auth::user()->name . ", il tuo articolo è stato aggiornato correttamente.");
     }
 
     /**

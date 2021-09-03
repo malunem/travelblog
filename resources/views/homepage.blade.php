@@ -23,8 +23,8 @@
                 <div class="col-12 col-md-6">
                     <div class="card flex-md-row mb-4 box-shadow h-md-250">
                       <div class="card-body d-flex flex-column align-items-start">
-                        <h3 class="mb-0">
-                          <a class="text-dark" href="#">{{$article->title}}</a>
+                        <h3 class="mb-0 text-dark">
+                            {{$article->title}}
                         </h3>
                         <div class="mb-1 text-muted">{{$article->created_at}}</div>
                         <p class="card-text mb-auto">{{substr("$article->body", 0, 150) . "[...]"}}</p>

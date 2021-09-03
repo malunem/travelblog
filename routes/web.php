@@ -23,3 +23,7 @@ Route::post('/my-articles', [ArticleController::class, 'store'])->name('saveArti
 Route::get('/my-articles', [ArticleController::class, 'getMyArticlesPage'])->name('myArticles');
 
 Route::get('/article/{article}', [ArticleController::class, 'show'])->name('showArticle');
+
+Route::get('/edit/{article}', [ArticleController::class, 'edit'])->name('editArticle');
+
+Route::put('/', [ArticleController::class, 'update'])->name('updateArticle');
