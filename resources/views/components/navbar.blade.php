@@ -30,7 +30,7 @@
                 @endguest
                 @auth
                     <li><a class="dropdown-item" href="{{route('newArticle')}}">Scrivi articolo</a></li>
-                    <li><a class="dropdown-item" href="#">I miei articoli</a></li>
+                    <li><a class="dropdown-item" href="{{route('myArticles')}}">I miei articoli</a></li>
                     <li><a class="dropdown-item" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('form-logout').submit();">Logout</a></li>
 
                     <form action="{{route('logout')}}" method="POST" id="form-logout">

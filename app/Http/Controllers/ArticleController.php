@@ -26,7 +26,9 @@ class ArticleController extends Controller
     }
 
     public function getMyArticlesPage() {
-        return view('my-articles');
+        $articles = Article::where('author', Auth::user()->name)->get();
+
+        return view('my-articles', ['articles'=>$articles]);
     }
 
     /**
@@ -91,7 +93,9 @@ class ArticleController extends Controller
     {   
         $article->title = $request->title;
         $article->body = $request->body;
-        $article->img = $request->file('img')->store('public/articles/');
+        if ($request->file('img')) {
+            $article->img = $request->file('img')->store('public/articles/');
+        }
         $article->author = $request->author;
         $article->save();
 
@@ -106,6 +110,8 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+
+        return redirect(route('homepage'))->with('message', 'Articolo eliminato.');
     }
 }

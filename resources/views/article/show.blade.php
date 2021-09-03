@@ -12,11 +12,18 @@
 
                         <p>{{$article->body}}</p>
 
-                        @auth
+                        @if (Auth::user()->name == $article->author)
                             <a href="{{route('editArticle', ['article'=>$article])}}">
-                                <button class="my-5 btn btn-block">Modifica articolo</button>
+                                <button class="my-5 btn">Modifica articolo</button>
                             </a>
-                        @endauth
+
+                            <form method="POST" action="{{route('deleteArticle', ['article'=>$article])}}" class="d-inline">
+                                @csrf
+                                @method('delete')
+
+                                <button type="submit" class="my-5 btn">Elimina articolo</button>
+                            </form>
+                        @endif
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@
                     </div>
                 @endif
                 <div class="vsc-initialized mt-5">
-                    <form method="POST" action="{{route('updateArticle')}}" class="form-signin" id="article-form" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('updateArticle', ['article'=>$article])}}" class="form-signin" id="article-form" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         
