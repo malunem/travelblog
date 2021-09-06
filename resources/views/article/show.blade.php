@@ -6,7 +6,7 @@
                     <div class="blog-post">
                         <h2 class="blog-post-title">{{$article->title}}</h2>
                         
-                        <p class="blog-post-meta">{{$article->created_at}} by <a href="/author/{{$article->author}}">{{$article->author}}</a></p>
+                        <p class="blog-post-meta">{{$article->created_at}} by <a href="/user/{{$article->getAuthor->id}}">{{$article->getAuthor->name}}</a></p>
                         
                         <img class="img-fluid" src="{{Storage::url($article->img)}}" alt="">
 

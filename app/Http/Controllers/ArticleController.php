@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,10 +26,11 @@ class ArticleController extends Controller
         return view('homepage', ['allArticles' => $articles]);
     }
 
-    public function getMyArticlesPage() {
-        $articles = Article::where('author', Auth::user()->name)->get();
+    public function getMyArticlesPage($id) {
+        $articles = Article::where('author_id', $id)->get();
+        $author_name = User::find($id)->name;
 
-        return view('my-articles', ['articles'=>$articles]);
+        return view('my-articles', ['articles'=>$articles, 'author_name'=>$author_name]);
     }
 
     /**
@@ -52,11 +54,11 @@ class ArticleController extends Controller
         $article = Article::create([
             'title'=>$request->title,
             'body'=>$request->text,
-            'author'=>$request->author,
+            'author_id'=>Auth::id(),
             'img'=>$request->file('img')->store('public/articles/')
         ]);
 
-        return redirect(route('myArticles'))->with('message', "Complimenti " . Auth::user()->name . ", hai pubblicato un nuovo articolo!");
+        return redirect(route('myArticles', ['id' => Auth::user()->id ]))->with('message', "Complimenti " . Auth::user()->name . ", hai pubblicato un nuovo articolo!");
 
     }
 
@@ -96,7 +98,7 @@ class ArticleController extends Controller
         if ($request->file('img')) {
             $article->img = $request->file('img')->store('public/articles/');
         }
-        $article->author = $request->author;
+        $article->author_id = $request->author_id;
         $article->save();
 
         return redirect(route('homepage'))->with('message', Auth::user()->name . ", il tuo articolo è stato aggiornato correttamente.");

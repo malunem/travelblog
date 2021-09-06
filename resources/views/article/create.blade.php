@@ -29,7 +29,7 @@
 
                         <input name="author" type="text" class="d-none form-control" value="{{Auth::user()->name}}">
 
-                        <button class="btn btn-block mt-5" type="submit">Pubblica l'articolo</button>
+                        <button class="btn btn-block m-5" type="submit">Pubblica l'articolo</button>
 
                       </form>
                 </div>

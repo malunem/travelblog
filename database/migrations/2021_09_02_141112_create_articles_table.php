@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->text('body');
             $table->string('img');
-            $table->string('author');
+            $table->foreignId('author_id')->constrained('users');
             $table->timestamps();
         });
     }
@@ -30,6 +30,7 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('articles');
     }
 }

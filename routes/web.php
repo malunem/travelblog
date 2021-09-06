@@ -20,7 +20,7 @@ Route::get('/nuovo-articolo', [ArticleController::class, 'create'])->name('newAr
 
 Route::post('/', [ArticleController::class, 'store'])->name('saveArticle');
 
-Route::get('/my-articles', [ArticleController::class, 'getMyArticlesPage'])->name('myArticles');
+Route::get('/user/{id}', [ArticleController::class, 'getMyArticlesPage'])->name('myArticles');
 
 Route::get('/article/{article}', [ArticleController::class, 'show'])->name('showArticle');
 

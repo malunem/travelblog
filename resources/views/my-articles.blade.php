@@ -15,7 +15,7 @@
             <div class="row mt-5">
                 <div class="col-12">
                     <h2 class="text-center">
-                        Tutti gli articoli di {{Auth::user()->name}}
+                        Tutti gli articoli di {{$author_name}}
                     </h2>
                 </div>
             </div>
@@ -26,13 +26,13 @@
                     <div class="blog-post">
                         <h2 class="blog-post-title">{{$article->title}}</h2>
                         
-                        <p class="blog-post-meta">{{$article->created_at}} by <a href="/author/{{$article->author}}">{{$article->author}}</a></p>
+                        <p class="blog-post-meta">{{$article->created_at}} by <a href="/user/{{$article->getAuthor->id}}">{{$article->getAuthor->name}}</a></p>
                         
                         <img class="img-fluid" src="{{Storage::url($article->img)}}" alt="">
 
                         <p>{{$article->body}}</p>
 
-                        @if (Auth::user()->name == $article->author)
+                        @if (Auth::user()->id == $article->author_id)
                             <a href="{{route('editArticle', ['article'=>$article])}}">
                                 <button class="my-5 btn">Modifica articolo</button>
                             </a>

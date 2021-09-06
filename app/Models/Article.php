@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Article extends Model
 {
@@ -13,6 +14,10 @@ class Article extends Model
         'title',
         'body',
         'img',
-        'author'
+        'author_id'
     ];
+
+    public function getAuthor(){
+        return $this->belongsTo(User::class, 'author_id');
+    }
 }
