@@ -112,6 +112,21 @@ class ArticleController extends Controller
         return redirect(route('homepage'))->with('message', Auth::user()->name . ", il tuo articolo è stato aggiornato correttamente.");
     }
 
+    public function getTagArticles($id) {
+        //$articles = Article::all()->getTags->where('id', $id)->get();
+        $articles = [];
+        foreach(Article::all() as $article){
+            foreach($article->getTags as $tag){
+                if ($tag->id == $id){
+                    $articles[] = $article;
+                }
+            }
+        }
+        $tag_name = Tag::find($id)->tag_name;
+
+        return view('article.tag', ['articles'=>$articles, 'tag_name'=>$tag_name]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

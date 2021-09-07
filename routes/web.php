@@ -29,3 +29,5 @@ Route::get('/edit/{article}', [ArticleController::class, 'edit'])->name('editArt
 Route::put('/update/{article}', [ArticleController::class, 'update'])->name('updateArticle');
 
 Route::delete('/delete/{article}', [ArticleController::class, 'destroy'])->name('deleteArticle');
+
+Route::get('/tag/{id}', [ArticleController::class, 'getTagArticles'])->name('tagArticles');
