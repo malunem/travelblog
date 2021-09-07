@@ -27,6 +27,23 @@
                         <label class="form-label mt-4">Carica l'immagine di copertina:</label>
                         <input name="img" type="file" class="form-control">
 
+                        <label class="form-label mt-4">Seleziona i tag adatti 1:</label>
+                        <select multiple class="form-select" name="tags[]">
+                            @foreach ($tags as $tag)
+                                <option value="{{$tag->id}}">{{$tag->tag_name}}</option>
+                            @endforeach
+                        </select>
+                        {{-- <label class="form-label mt-4">Seleziona i tag adatti 2:</label>
+                        @foreach ($tags as $tag)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Default checkbox
+                            </label>
+                        </div>
+                        @endforeach --}}
+                        
+
                         <input name="author" type="text" class="d-none form-control" value="{{Auth::user()->name}}">
 
                         <button class="btn btn-block m-5" type="submit">Pubblica l'articolo</button>

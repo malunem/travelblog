@@ -8,11 +8,19 @@
                         
                         <p class="blog-post-meta">{{$article->created_at}} by <a href="/user/{{$article->getAuthor->id}}">{{$article->getAuthor->name}}</a></p>
                         
+                        <p class="blog-post-meta">
+                            @foreach ($article->getTags as $tag)
+                                <a href="/tag/{{$tag->id}}">
+                                    {{$tag->tag_name}}
+                                </a>
+                            @endforeach
+                        </p>
+                        
                         <img class="img-fluid" src="{{Storage::url($article->img)}}" alt="">
 
                         <p>{{$article->body}}</p>
 
-                        @if (Auth::user()->name == $article->author)
+                        @if (Auth::user()->id == $article->getAuthor->id)
                             <a href="{{route('editArticle', ['article'=>$article])}}">
                                 <button class="my-5 btn">Modifica articolo</button>
                             </a>

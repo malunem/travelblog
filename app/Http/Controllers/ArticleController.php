@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('article.create');
+        return view('article.create', ['tags'=>Tag::all()]);
     }
 
     /**
@@ -51,12 +52,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
+
         $article = Article::create([
             'title'=>$request->title,
             'body'=>$request->text,
             'author_id'=>Auth::id(),
             'img'=>$request->file('img')->store('public/articles/')
         ]);
+
+        foreach($request->tags as $tag){
+            $article->getTags()->attach($tag);
+        }
 
         return redirect(route('myArticles', ['id' => Auth::user()->id ]))->with('message', "Complimenti " . Auth::user()->name . ", hai pubblicato un nuovo articolo!");
 
@@ -69,7 +76,8 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Article $article)
-    {
+    {   
+        //dd($article);
         return view('article.show', ['article' => $article]);
     }
 
