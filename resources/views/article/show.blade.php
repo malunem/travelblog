@@ -20,6 +20,7 @@
 
                         <p>{{$article->body}}</p>
 
+                        @auth
                         @if (Auth::user()->id == $article->getAuthor->id)
                             <a href="{{route('editArticle', ['article'=>$article])}}">
                                 <button class="my-5 btn">Modifica articolo</button>
@@ -31,7 +32,9 @@
 
                                 <button type="submit" class="my-5 btn">Elimina articolo</button>
                             </form>
-                        @endif
+                        @endif                   
+                        @endauth
+
                 </div>
             </div>
         </div>
